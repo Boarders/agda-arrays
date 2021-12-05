@@ -2,5 +2,5 @@ depend:
   cubical
   standard-library
   agda-categories
-include: .
+include: src
 
