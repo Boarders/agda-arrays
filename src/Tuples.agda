@@ -18,7 +18,7 @@ variable
   A : Set aℓ
   B : Set bℓ
   a t  : Set
-  n    : ℕ
+  n : ℕ
   ts ts' rs  : Vec Set n
 
 data Tuple : (n : ℕ) →  Vec Set n →  Set where
@@ -52,8 +52,11 @@ unzipT zero .(suc _) [] (t ∷ ts) = nil
 unzipT (suc n) suc[m]@.(suc _) ts@(t ∷ tl) (v ∷ vs) with unzipT (suc n) _ ts vs
 ... | rec = zipWithT v rec (Vec.map (λ t → Vec t suc[m]) ts) (mkCons (suc n) ts)
 
---zipT : (ts : Vec Set n) → (Tuple n (Vec.map (λ t → Vec t m)) ts) → Vec (Tuple n ts) m
---zipT = {!!}
+zipT : (n m : ℕ) → (ts : Vec Set n) → (Tuple n (Vec.map (λ t → Vec t m) ts)) → Vec (Tuple n ts) m
+zipT zero m [] tps = fill tps
+zipT (suc n) zero ts@(tp ∷ tps) (cons v1 vs) = []
+zipT (suc n) suc[m]@(suc m) ts@(tp ∷ tps) (cons v1 vs) with zipT n (suc[m]) tps vs 
+... | rec = {!!} ∷ {!!}
 
 {-
 "When people first start to use coq or isabelle, you don't hear from them for two years.
